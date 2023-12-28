@@ -1,13 +1,8 @@
 const formInputElem = document.forms[0]
 const formSearchElem = document.forms[1]
-let inputParam = []
+let inputParam = JSON.parse(localStorage.getItem('cards')) || []
 
-const getCard = () => {JSON.parse(localStorage.getItem('cards')) || []}
-const addCard = (card) => {localStorage.setItem('cards', JSON.stringify([...getCard(), card]))}
-// const removeCard = (card) => {
-//     const new_list = getCard().filter(card => JSON.stringify(card) !== JSON.stringify(card))
-//     localStorage.setItem('card', JSON.stringify((new_list)))
-// }
+const addCard = (card) => localStorage.setItem('cards', JSON.stringify(inputParam))
 
 function setID(number){
     let id = number
@@ -30,6 +25,7 @@ formInputElem.addEventListener('submit', event => {
     word.value = ''
     translation.value = ''
     color.value = ''
+    addCard()
     render(inputParam)
 })
 
@@ -69,6 +65,7 @@ function render(param) {
                 })
                 closeCardElem.addEventListener('click', () => {
                     inputParam = inputParam.filter(closeCard => closeCard.id !== card.id);
+                    addCard()
                     render(inputParam);
                 })
             })
