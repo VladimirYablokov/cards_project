@@ -1,14 +1,8 @@
 const formInputElem = document.forms[0]
 const formSearchElem = document.forms[1]
-const cardBoxElem = document.querySelector('#cardboard')
-let inputParam = []
+let inputParam = JSON.parse(localStorage.getItem('cards')) || []
 
-const getCard = () => {JSON.parse(localStorage.getItem('cards')) || []}
-const addCard = (card) => {localStorage.setItem('cards', JSON.stringify([...getCard(), card]))}
-const removeCard = (card) => {
-    const new_list = getCard().filter(card => JSON.stringify(card) !== JSON.stringify(card))
-    localStorage.setItem('card', JSON.stringify((new_list)))
-}
+const addCard = (card) => localStorage.setItem('cards', JSON.stringify(inputParam))
 
 function setID(number){
     let id = number
@@ -31,6 +25,7 @@ formInputElem.addEventListener('submit', event => {
     word.value = ''
     translation.value = ''
     color.value = ''
+    addCard()
     render(inputParam)
 })
 
@@ -42,33 +37,39 @@ formSearchElem.addEventListener('input', (event)=>{
 })
 
 function render(param) {
+    const cardBoxElem = document.querySelector('#cardboard')
     cardBoxElem.innerHTML = ''
-    param.map(card => {
-        const cardElem = document.createElement('div');
-        cardElem.classList.add('card')
-        const cardTitleElem = document.createElement('p')
-        cardTitleElem.classList.add('card__Title')
-        const closeCardElem = document.createElement('div')
-        closeCardElem.classList.add('card__close')
-        cardElem.append(cardTitleElem, closeCardElem)
-        cardBoxElem.append(cardElem)
-        cardElem.style.background = card.color
-        cardTitleElem.innerText = card.word
-        closeCardElem.innerText = '❌'
-
-        cardElem.addEventListener('dblclick', () => {
-            if (card.state){
-                cardTitleElem.innerText = card.translation;
-                card.state = false
-            }else{
-                cardTitleElem.innerText = card.word;
-                card.state = true
-            }
-        })
-        closeCardElem.addEventListener('click', () => {
-            inputParam = inputParam.filter(closeCard => closeCard.id !== card.id);
-            render(inputParam);
-        })
-    })
+    if(param.length){
+        cardBoxElem.append(
+            param.map(card => {
+                const{word,translation,color,state,id} = card
+                const cardElem = document.createElement('div');
+                cardElem.classList.add('card')
+                const cardTitleElem = document.createElement('p')
+                cardTitleElem.classList.add('card__Title')
+                const closeCardElem = document.createElement('div')
+                closeCardElem.classList.add('card__close')
+                cardElem.append(cardTitleElem, closeCardElem)
+                cardBoxElem.append(cardElem)
+                cardElem.style.background = color
+                cardTitleElem.innerText = word
+                closeCardElem.innerText = '❌'
+                cardElem.addEventListener('dblclick', () => {
+                    if (state){
+                        cardTitleElem.innerText = card.translation;
+                        card.state = false
+                    }else{
+                        cardTitleElem.innerText = word;
+                        state = true
+                    }
+                })
+                closeCardElem.addEventListener('click', () => {
+                    inputParam = inputParam.filter(closeCard => closeCard.id !== card.id);
+                    addCard()
+                    render(inputParam);
+                })
+            })
+        )
+    }
 }
 render(inputParam)
