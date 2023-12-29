@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
@@ -6,7 +6,8 @@
     user-select: none;
 
 }
-header{
+
+header {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -14,7 +15,8 @@ header{
     color: black;
     padding: 50px
 }
-.input__form{
+
+.input__form {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
@@ -31,7 +33,7 @@ header{
     font-weight: 400;
 }
 
-.input__form input{
+.input__form input {
     width: 150px;
     height: 50px;
     border-radius: 25px;
@@ -42,12 +44,13 @@ header{
     padding-left: 20px;
     align-content: center;
 }
+
 .input__form :active, :hover, :focus {
     outline: 0;
     outline-offset: 0;
 }
 
-.input__form button{
+.input__form button {
     width: 200px;
     height: 50px;
     border-radius: 25px;
@@ -57,7 +60,7 @@ header{
     cursor: pointer;
 }
 
-.search__form{
+.search__form {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -68,7 +71,7 @@ header{
     border-radius: 25px;
 }
 
-.search__form input{
+.search__form input {
     width: 400px;
     height: 50px;
     border-radius: 25px;
@@ -82,9 +85,9 @@ header{
     font-weight: 400;
 }
 
-#cardboard{
+#cardboard {
     display: grid;
-    grid-template-columns: repeat(4, 400px);
+    grid-template-columns: repeat(3, 400px);
     grid-row-gap: 15px;
     justify-content: space-between;
     flex-direction: row;
@@ -92,7 +95,8 @@ header{
     flex-wrap: wrap;
     padding: 0 50px;
 }
-#cardboard  .card{
+
+#cardboard .card {
     border-radius: 20px;
     position: relative;
     background-color: grey;
@@ -103,13 +107,13 @@ header{
     align-items: center;
 }
 
-#cardboard  .card .card__close{
-    width: 50px;
-    height: 50px;
-    background-color: red;
+#cardboard .card .card__close {
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
     position: absolute;
-    top: -25px;
-    left: 375px;
+    top: 5px;
+    left: 360px;
     border-radius: 25px;
     display: flex;
     justify-content: center;
@@ -119,7 +123,7 @@ header{
 
 }
 
-#cardboard .card__Title{
+#cardboard .card__Title {
     text-align: center;
     font-weight: 400;
     font-size: 50px;

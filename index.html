@@ -6,22 +6,20 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header>
-        <form class="input__form">
-            <input type="text" name="word" placeholder="Слово" value="Слово">
-            <input type="text" name="translation" placeholder="Перевод" value="Word">
-            <input type="text" name="color" placeholder="Цвет" value="Green">
-            <button>Добавить</button>
-        </form>
-        <form class="search__form">
-            <label>
-                <input type="text" placeholder="Поиск">
-            </label>
-        </form>
-    </header>
-    <div id="cardboard">
-
-    </div>
+<header>
+    <form class="input__form">
+        <input type="text" name="word">
+        <input type="text" name="translation" >
+        <input type="text" name="color" disabled>
+        <button>Добавить</button>
+    </form>
+    <form class="search__form">
+        <label>
+            <input type="text" placeholder="Поиск">
+        </label>
+    </form>
+</header>
+<div id="cardboard"></div>
 <script src="scripts/script.js"></script>
 </body>
 </html>
